@@ -1,11 +1,8 @@
 package view;
 
 import MenuController.MenuController;
-
-import java.io.IOException;
-
 public class Menu {
-    public static void showMenu() throws InterruptedException, IOException {
+    public static void showMenu() throws InterruptedException{
         System.out.println("-----Chương trình quản lý sản phẩm-------");
         System.out.println("Chọn chức năng theo số để tiếp tục");
         System.out.println("1. Xem danh sách");

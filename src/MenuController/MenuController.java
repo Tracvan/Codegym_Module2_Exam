@@ -4,13 +4,11 @@ import Model.Product;
 import Service.ProductService;
 import readWriteFile.ReadWriteFile;
 import view.Menu;
-
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class MenuController {
-    public static void load() throws InterruptedException, IOException {
+    public static void load() throws InterruptedException {
         List<Product> products = ReadWriteFile.readFile();
         boolean isValid =true;
         do {
@@ -58,6 +56,8 @@ public class MenuController {
                     Menu.showMenu();
                     isValid = false;
                     break;
+                case "9":
+                    System.exit(0);
             }
             if(isValid){
                 System.err.println("Lựa chọn không hợp lệ vui lòng nhập lại");

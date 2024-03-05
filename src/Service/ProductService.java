@@ -16,7 +16,8 @@ public class ProductService {
                 maxCost = p;
             }
         }
-        System.out.println("Mã sản phẩm :" + maxCost.getId() + "Tên sản phẩm: " + maxCost.getName() + "Số lượng sản phẩm: " + maxCost.getQuantity() + "Giá sản phẩm: " + maxCost.getPrice() + "Mô tả: " + maxCost.getType());
+        System.out.println("Sản phẩm có giá cao nhất");
+        System.out.println("Mã sản phẩm : " + maxCost.getId() + " Tên sản phẩm: " + maxCost.getName() + " Số lượng sản phẩm: " + maxCost.getQuantity() + " Giá sản phẩm: " + maxCost.getPrice() + " Mô tả: " + maxCost.getType());
     }
 
     public static void viewList() {
@@ -32,7 +33,7 @@ public class ProductService {
             }
         }
 
-    public static void addProduct() throws IOException {
+    public static void addProduct() {
         int id;
         boolean isExist = false;
         Scanner scanner = new Scanner(System.in);
@@ -94,6 +95,7 @@ public class ProductService {
                     p.setQuantity(newQuantity);
                     p.setType(newType);
                     ReadWriteFile.writeFile(products);
+                    System.out.println("Đã sửa thành công");
                     break;
                 }
             }
@@ -101,8 +103,6 @@ public class ProductService {
                 System.err.println("Không tìm thấy sản phẩm, vui lòng nhập lại");
             }
         } while (!isMatch);
-        {
-        }
     }
 
     public static void deleteProduct() {
@@ -172,7 +172,6 @@ public class ProductService {
         Thread.sleep(1000);
 
     }
-
 
     public static void sortProductList() throws InterruptedException {
         boolean isMatch = false;
