@@ -2,8 +2,8 @@ package Service;
 
 import Model.Product;
 import readWriteFile.ReadWriteFile;
+import view.Menu;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -105,7 +105,7 @@ public class ProductService {
         } while (!isMatch);
     }
 
-    public static void deleteProduct() {
+    public static void deleteProduct() throws InterruptedException {
         boolean isFound = false;
         Scanner scanner = new Scanner(System.in);
         List<Product> products = ReadWriteFile.readFile();
@@ -116,9 +116,16 @@ public class ProductService {
             for (Product p : products) {
                 if (p.getId() == id) {
                     isFound = true;
+                    System.out.println("Nhập Y để xác nhận");
+                    String confirm = scanner.nextLine();
+                    if(confirm.equals("Y")){
                     products.remove(p);
                     ReadWriteFile.writeFile(products);
-                    System.out.println("Đã xóa thành công");
+                    System.out.println("Đã xóa thành công");}
+                    else {
+                        Menu.showMenu();
+                        break;
+                    }
                     break;
                 }
             }
@@ -179,6 +186,7 @@ public class ProductService {
         String choice;
         System.out.println("1.Sắp xếp theo giá tăng dần");
         System.out.println("2.Sắp xếp theo giá giảm dần");
+        System.out.println("3.Trở về menu");
         do {
             System.out.println("Hãy nhập lựa chọn");
             choice = scanner.nextLine();
@@ -190,6 +198,9 @@ public class ProductService {
                 case "2":
                     isMatch = true;
                     sortPriceHighToLow();
+                    break;
+                case "3":
+                    Menu.showMenu();
                     break;
             }
             if(!isMatch){
