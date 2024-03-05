@@ -21,17 +21,22 @@ public class ProductService {
     }
 
     public static void viewList() {
+        Scanner scanner = new Scanner(System.in);
         List<Product> products = ReadWriteFile.readFile();
         System.out.println("Tên sản phẩm\t\t\tGiá\tSố Lượng\tKiểu");
-        for (int i = 0; i<products.size(); i++) {
-                Product product = products.get(i);
+        for (int i = 0; i < products.size(); i += 5) {
+            for (int j = i; j < i + 5 && j<products.size(); j++) {
+                Product product = products.get(j);
                 String formattedName = String.format("%-20s", product.getName());
                 String formattedPrice = String.format("%.2f", product.getPrice());
                 String formattedQuantity = String.format("%-10d", product.getQuantity());
                 String formattedType = String.format("%-10s", product.getType());
                 System.out.println(formattedName + "\t" + formattedPrice + "\t" + formattedQuantity + "\t" + formattedType);
             }
+            System.out.println("Enter để xem tiếp");
+            String enter = scanner.nextLine();
         }
+    }
 
     public static void addProduct() {
         int id;
